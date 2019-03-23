@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/shamahoque/mern-marketplace.git"
+    "url": "https://github.com/clderoch/mern-marketplace"
   },
-  "homepage": "https://github.com/shamahoque/mern-marketplace.git",
+  "homepage": "https://github.com/clderoch/mern-marketplace.git",
   "main": "./dist/server.generated.js",
   "scripts": {
     "development": "nodemon",
