@@ -1,17 +1,32 @@
-import config from './config/config'
-import app from './express'
-import mongoose from 'mongoose'
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongodb = require("mongodb");
+var ObjectID = mongodb.ObjectID;
 
-// Connection URL
-mongoose.Promise = global.Promise
-mongoose.connect(config.mongoUri)
-mongoose.connection.on('error', () => {
-  throw new Error(`unable to connect to database: ${mongoUri}`)
-})
+// var CONTACTS_COLLECTION = "contacts";
 
-app.listen(config.port, (err) => {
+var app = express();
+app.use(bodyParser.json());
+
+// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
+var db;
+
+// Connect to the database before starting the application server.
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://heroku_9jzxz5qk:4uhm14t7ttq6ol1ffehbfvovfh@ds121248.mlab.com:21248/heroku_9jzxz5qk", function (err, client) {
   if (err) {
-    console.log(err)
+    console.log(err);
+    process.exit(1);
   }
-  console.info('Server started on port %s.', config.port)
-})
+
+  // Save database object from the callback for reuse.
+  db = client.db();
+  console.log("Database connection ready");
+
+  // Initialize the app.
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });
+});
+
+// CONTACTS API ROUTES BELOW
