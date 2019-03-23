@@ -8,7 +8,8 @@ const CartItemSchema = new mongoose.Schema({
     default: 'Not processed',
     enum: ['Not processed' , 'Processing', 'Shipped', 'Delivered', 'Cancelled']}
 })
-const CartItem = mongoose.model('CartItem', CartItemSchema)
+// const CartItem = mongoose.model('CartItem', CartItemSchema)
+module.exports.CartItem = mongoose.model('CartItem', CartItemSchema)
 const OrderSchema = new mongoose.Schema({
   products: [CartItemSchema],
   customer_name: {
@@ -38,6 +39,7 @@ const OrderSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.ObjectId, ref: 'User'}
 })
 
-const Order = mongoose.model('Order', OrderSchema)
+module.exports.Order = mongoose.model('Order', OrderSchema)
+// const Order = mongoose.model('Order', OrderSchema)
 
-export {Order, CartItem}
+// export {Order, CartItem}
