@@ -4,21 +4,32 @@ import errorHandler from './../helpers/dbErrorHandler'
 import request from 'request'
 import config from './../../config/config'
 import stripe from 'stripe'
+var getIp = require('ipware')().get_ip
 
 const myStripe = stripe(config.stripe_test_secret_key)
 
 const create = (req, res, next) => {
-  const user = new User(req.body)
+
+const saniUser= {
+  ip: getIp(req).clientIp,
+  email: req.body.email,
+  seller: req.body.seller,
+  password: req.body.password,
+  name: req.body.name
+  }
+
+  const user = new User(saniUser)
   user.save((err, result) => {
     if (err) {
       return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
       })
     }
-    res.status(200).json({
+
+    return res.status(200).json({
       message: "Successfully signed up!"
     })
-  })
+})
 }
 
 /**

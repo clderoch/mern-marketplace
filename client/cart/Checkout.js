@@ -55,6 +55,9 @@ class Checkout extends Component {
   componentDidMount = () => {
     let user = auth.isAuthenticated().user
     let checkoutDetails = this.state.checkoutDetails
+    // fetch('http://ipinfo.io')
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ data }))
     checkoutDetails.products = cart.getCart()
     checkoutDetails.customer_name = user.name
     checkoutDetails.customer_email = user.email
