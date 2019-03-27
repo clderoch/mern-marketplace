@@ -13,6 +13,11 @@ const create = (req, res, next) => {
 const saniUser= {
   ip: getIp(req).clientIp,
   email: req.body.email,
+  address: req.body.address,
+  city: req.body.city,
+  state: req.body.state,
+  zip: req.body.zip,
+  phone: req.body.phone,
   seller: req.body.seller,
   password: req.body.password,
   name: req.body.name

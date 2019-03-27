@@ -39,6 +39,11 @@ const styles = theme => ({
 class Signup extends Component {
   state = {
       name: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      phone: '',
       password: '',
       email: '',
       open: false,
@@ -53,6 +58,11 @@ class Signup extends Component {
     const user = {
       name: this.state.name || undefined,
       email: this.state.email || undefined,
+      address: this.state.address || undefined,
+      city: this.state.city || undefined,
+      st: this.state.st || undefined,
+      zip: this.state.zip || undefined,
+      phone: this.state.phone || undefined,
       password: this.state.password || undefined
     }
     create(user).then((data) => {
@@ -74,6 +84,11 @@ class Signup extends Component {
           </Typography>
           <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
+          <TextField id="address" type="address" label="Address" className={classes.textField} value={this.state.address} onChange={this.handleChange('address')} margin="normal"/><br/>
+          <TextField id="city" type="city" label="City" className={classes.textField} value={this.state.city} onChange={this.handleChange('city')} margin="normal"/><br/>
+          <TextField id="st" type="st" label="State" className={classes.textField} value={this.state.st} onChange={this.handleChange('st')} margin="normal"/><br/>
+          <TextField id="zip" type="zip" label="Zip" className={classes.textField} value={this.state.zip} onChange={this.handleChange('zip')} margin="normal"/><br/>
+          <TextField id="phone" type="phone" label="Phone" className={classes.textField} value={this.state.phone} onChange={this.handleChange('phone')} margin="normal"/><br/>
           <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
           <br/> {
             this.state.error && (<Typography component="p" color="error">
